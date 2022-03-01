@@ -10,9 +10,9 @@ TIMEOUT_SEC=60 # Timeout after second will be created
 REQUEST_INSREASE_LIMIT=600 # Max request cap
 
 if  [[ "$IS_LOCAL" != "local" ]]; then
-    awk '{print $1}' $ACCESS_FILE_PATH | sort | uniq -c | sort -nr > $FIRST_FILE_PATH
+    awk '{print $9}' $ACCESS_FILE_PATH | cut -d '"' -f2 | sort | uniq -c | sort -nr > $FIRST_FILE_PATH
     sleep $TIMEOUT_SEC
-    awk '{print $1}' $ACCESS_FILE_PATH | sort | uniq -c | sort -nr > $SECOND_FILE_PATH
+    awk '{print $9}' $ACCESS_FILE_PATH | cut -d '"' -f2 | sort | uniq -c | sort -nr > $SECOND_FILE_PATH
 fi
 
 IFS=' '
